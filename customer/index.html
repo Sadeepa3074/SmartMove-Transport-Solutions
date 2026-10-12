@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Trip | SmartMove</title>
+  <link rel="stylesheet" href="booking.css">
+  <link rel="stylesheet" href="customer-session.css">
+  <script src="customer-session.js" defer></script>
+  <script src="booking.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html#home" aria-label="SmartMove home"><span class="brand-mark">S</span><span>Smart<span class="brand-green">Move</span></span></a>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mainNav">☰</button>
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+      <a href="../index.html#home">Home</a>
+      <a href="../index.html#routes">Routes</a>
+      <a href="index.html" class="active" aria-current="page">Book a Trip</a>
+      <a href="../index.html#tracking">Track Trip</a>
+      <a href="../index.html#fleet">Fleet</a>
+      <a href="../index.html#about">About</a>
+    </nav>
+    <div class="header-actions" data-login-href="../login.html?next=index.html" data-signup-href="signup.html?next=index.html">
+      <a class="btn btn-outline btn-small header-btn header-btn-outline" href="../login.html?next=index.html">Login</a>
+      <a class="btn btn-green btn-small header-btn header-btn-green" href="signup.html?next=index.html">Sign Up</a>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+    <section class="search-panel" id="search-area">
+      <h1>Where are you travelling today?</h1>
+      <form id="trip-search-form" class="search-form">
+        <label>From<select id="customer-origin" required><option value="">Select departure</option></select></label>
+        <label>To<select id="customer-destination" required><option value="">Select destination</option></select></label>
+        <label>Travel Date<input id="customer-date" type="date" required></label>
+        <label>Passengers<select id="customer-passengers"><option value="1">1 Passenger</option><option value="2">2 Passengers</option><option value="3">3 Passengers</option><option value="4">4 Passengers</option></select></label>
+        <button class="btn btn-primary search-submit" type="submit">Search Trips</button>
+      </form>
+      <p id="search-error" class="form-error" role="alert"></p>
+    </section>
+
+    <div class="content-columns">
+      <section class="results" aria-labelledby="results-title">
+        <div class="section-head"><h2 id="results-title">Available Trips</h2><span id="result-count" class="subtle-count">0 trips</span></div>
+        <p id="results-description" class="results-description">Search routes and dates to find a journey.</p>
+        <div id="trip-results" class="trip-results" aria-live="polite"></div>
+      </section>
+
+      <aside class="summary-card" aria-labelledby="summary-title">
+        <h2 id="summary-title">Booking Summary</h2>
+        <div class="selected-journey"><small>SELECTED TRIP</small><strong id="summary-route">No trip selected</strong><p id="summary-trip-detail">Choose a trip from the available departures.</p></div>
+        <div class="summary-line"><span>Passengers</span><strong id="summary-passengers">1 Rider</strong></div>
+        <div class="summary-line"><span>Selected Seats</span><strong id="summary-seats">None</strong></div>
+        <div class="summary-line"><span>Fare per Seat</span><strong id="summary-fare">Rs. 0</strong></div>
+        <div class="summary-line"><span>Service Fee</span><strong id="summary-fee">Rs. 0</strong></div>
+        <div class="summary-total"><span>Total Amount</span><strong id="summary-total">Rs. 0</strong></div>
+        <p class="summary-hint" id="summary-hint">Select a trip and choose seats to continue.</p>
+        <button type="button" id="proceed-payment" class="btn btn-primary" disabled>Proceed to Payment</button>
+        <button type="button" id="change-seats" class="btn btn-outline" hidden>Change Seats</button>
+        <p class="demo-note">Coursework simulation — no real payment gateway is connected.</p>
+      </aside>
+    </div>
+  </main>
+
+  <dialog id="seat-dialog" class="modal seat-modal" aria-labelledby="seat-dialog-title">
+    <div class="modal-head"><div><h2 id="seat-dialog-title">Choose Your Seats</h2><p id="seat-dialog-subtitle">Select seats for your journey.</p></div><button type="button" class="icon-close" id="seat-close" aria-label="Close">×</button></div>
+    <div class="seat-legend"><span><i class="seat-key seat-free"></i> Available</span><span><i class="seat-key seat-selected"></i> Selected</span><span><i class="seat-key seat-taken"></i> Booked</span></div>
+    <div class="vehicle-shell"><div class="vehicle-front"><span>FRONT</span><span>◉ Driver</span></div><div id="seat-map" class="seat-map"></div></div>
+    <p id="seat-progress" class="seat-progress" aria-live="polite"></p>
+    <div class="modal-actions"><button id="seat-back" type="button" class="btn btn-outline">Cancel</button><button id="seat-confirm" type="button" class="btn btn-primary" disabled>Confirm Seats</button></div>
+  </dialog>
+
+  <dialog id="passenger-dialog" class="modal" aria-labelledby="passenger-dialog-title">
+    <div class="modal-head"><div><h2 id="passenger-dialog-title">Passenger Details</h2><p>Your registered customer information will be used for this booking.</p></div><button type="button" class="icon-close" id="passenger-close" aria-label="Close">×</button></div>
+    <form id="passenger-form" class="passenger-form">
+      <label>Full Name<input id="passenger-name" type="text" autocomplete="name" maxlength="100" required></label>
+      <label>Email Address<input id="passenger-email" type="email" autocomplete="email" required></label>
+      <label>Phone Number<input id="passenger-phone" type="tel" autocomplete="tel" maxlength="20" required></label>
+      <p class="demo-notice">Clicking confirm completes the coursework payment automatically. A CONFIRMED Booking and COMPLETED Payment record will be saved to Oracle; no external payment gateway is used.</p>
+      <button type="submit" class="btn btn-primary">Confirm Booking & Complete Payment</button>
+    </form>
+  </dialog>
+
+  <dialog id="success-dialog" class="modal" aria-labelledby="success-title">
+    <div class="success-block"><span class="success-icon">✓</span><h2 id="success-title">Booking Created</h2><p id="success-message"></p><div class="success-actions"><a class="btn btn-outline" href="my-bookings.html">My Bookings</a><button id="success-done" type="button" class="btn btn-primary">Done</button></div></div>
+  </dialog>
+
+  <footer>© SmartMove Transport Solutions · Customer Booking</footer>
+</body>
+</html>
