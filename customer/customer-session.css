@@ -1,0 +1,16 @@
+/* Shared signed-in account state across SmartMove's customer headers. */
+.site-header .header-actions {display:flex;align-items:center;gap:9px;min-width:max-content;}
+.site-header .sm-account-menu {position:relative;font-family:Inter,Arial,sans-serif;color:#1c2b50;}
+.site-header .sm-account-trigger {display:flex;align-items:center;gap:9px;list-style:none;cursor:pointer;border-radius:8px;padding:5px;}
+.site-header .sm-account-trigger::-webkit-details-marker {display:none;}
+.site-header .sm-account-trigger:hover {background:#f4f8fa;}
+.site-header .sm-avatar {width:34px;height:34px;border-radius:50%;background:#1c2b50;color:#09b99f;display:grid;place-items:center;font-size:12px;font-weight:800;flex-shrink:0;}
+.site-header .sm-account-text {display:flex;flex-direction:column;gap:3px;max-width:150px;}
+.site-header .sm-account-text strong {font-size:11px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.site-header .sm-account-text small {font-size:9px;color:#09a18e;}
+.site-header .sm-chevron {font-size:16px;color:#7c8495;}
+.site-header .sm-menu-items {position:absolute;z-index:50;right:0;top:calc(100% + 10px);width:226px;display:grid;gap:2px;background:#fff;border:1px solid #e7ebf2;border-radius:10px;padding:9px;box-shadow:0 18px 36px rgba(15,30,60,.16);}
+.site-header .sm-menu-items a,.site-header .sm-menu-items button {text-align:left;display:block;width:100%;font:600 12px Inter,Arial,sans-serif;color:#1c2b50;padding:11px 12px;border:0;border-radius:6px;background:transparent;cursor:pointer;}
+.site-header .sm-menu-items a:hover,.site-header .sm-menu-items button:hover {background:#ecf9f6;}
+.site-header .sm-menu-items .sm-logout {color:#ad3e42;border-top:1px solid #e7ebf2;border-radius:0;margin-top:4px;}
+@media(max-width:680px){.site-header .sm-account-text{display:none}.site-header .sm-chevron{display:none}.site-header .sm-account-trigger{padding:0}.site-header .sm-avatar{height:30px;width:30px}.site-header .sm-menu-items{right:0;top:calc(100% + 14px)}}
