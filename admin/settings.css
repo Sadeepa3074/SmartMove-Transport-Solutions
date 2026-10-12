@@ -1,0 +1,378 @@
+
+/* =========================================
+   SMARTMOVE ADMIN SETTINGS
+========================================= */
+
+#settings-page[hidden],
+.settings-panel[hidden] {
+    display: none !important;
+}
+
+#settings-page {
+    color: #1c2941;
+}
+
+/* HEADER */
+
+.settings-header {
+    margin-bottom: 24px;
+}
+
+.settings-header h2 {
+    font-size: 24px;
+    margin: 0 0 7px;
+}
+
+.settings-header p {
+    color: #78869a;
+    font-size: 13px;
+    margin: 0;
+}
+
+/* TABS */
+
+.settings-tabs {
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid #dfe5ed;
+    margin-bottom: 24px;
+    overflow-x: auto;
+}
+
+.settings-tab {
+    padding: 13px 19px;
+    border: none;
+    border-bottom: 3px solid transparent;
+    background: transparent;
+    color: #728096;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.settings-tab:hover {
+    color: #009b88;
+}
+
+.settings-tab.active {
+    color: #009b88;
+    border-bottom-color: #009b88;
+}
+
+/* CONTENT CARD */
+
+.settings-card {
+    background: #fff;
+    border: 1px solid #e4e8ee;
+    border-radius: 12px;
+    padding: 26px;
+    max-width: 1000px;
+}
+
+.settings-card-heading {
+    margin-bottom: 24px;
+}
+
+.settings-card-heading h3 {
+    font-size: 18px;
+    margin: 0 0 7px;
+}
+
+.settings-card-heading p {
+    color: #8190a2;
+    font-size: 12px;
+    margin: 0;
+}
+
+/* PROFILE BANNER */
+
+.settings-profile-banner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    margin-bottom: 25px;
+    background: #f4f8fa;
+    border-radius: 10px;
+}
+
+.settings-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: #009b88;
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.settings-profile-banner h3 {
+    margin: 0 0 5px;
+    font-size: 17px;
+}
+
+.settings-profile-banner p {
+    margin: 0;
+    color: #7d8a9b;
+    font-size: 12px;
+}
+
+/* PROFILE FORM */
+
+.settings-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.settings-form-grid label,
+#settings-password-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: #44546b;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.settings-form-grid input,
+.settings-form-grid select,
+.settings-form-grid textarea,
+#settings-password-form input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px 13px;
+    border: 1px solid #dae2eb;
+    border-radius: 8px;
+    background: #fff;
+    color: #24354e;
+    font: inherit;
+    font-size: 12px;
+}
+
+.settings-form-grid input:focus,
+.settings-form-grid select:focus,
+.settings-form-grid textarea:focus,
+#settings-password-form input:focus {
+    outline: 2px solid #b6e9e1;
+    border-color: #009b88;
+}
+
+.settings-form-grid input[readonly] {
+    background: #f2f5f8;
+    color: #7c8899;
+    cursor: not-allowed;
+}
+
+.settings-full-width {
+    grid-column: 1 / -1;
+}
+
+.settings-form-grid textarea {
+    resize: vertical;
+}
+
+.settings-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 11px;
+    margin-top: 24px;
+}
+
+.settings-secondary-btn {
+    padding: 11px 17px;
+    border: 1px solid #d7e1eb;
+    border-radius: 8px;
+    background: #fff;
+    color: #26354e;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.settings-secondary-btn:hover {
+    background: #f3f7fa;
+}
+
+.settings-message {
+    min-height: 16px;
+    color: #008b79;
+    font-size: 12px;
+    margin-top: 14px;
+    overflow-wrap: anywhere;
+}
+
+.settings-message.error {
+    color: #c43b3b;
+}
+
+/* SECURITY */
+
+.settings-security-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.settings-security-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: #f2f7f8;
+    border-radius: 10px;
+    font-size: 21px;
+    flex-shrink: 0;
+}
+
+.settings-security-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.settings-security-text h4 {
+    margin: 0 0 6px;
+    font-size: 13px;
+}
+
+.settings-security-text p {
+    color: #8290a0;
+    font-size: 12px;
+    margin: 0;
+}
+
+.settings-security-note,
+.settings-note {
+    margin-top: 20px;
+    padding: 14px;
+    background: #f4f7fa;
+    border-radius: 8px;
+    color: #738195;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* NOTIFICATIONS */
+
+.settings-notification-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 20px 0;
+    border-bottom: 1px solid #edf0f4;
+    cursor: pointer;
+}
+
+.settings-notification-row strong {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.settings-notification-row small {
+    display: block;
+    color: #8290a0;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.settings-notification-row input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: #009b88;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+/* PASSWORD DIALOG */
+
+dialog.settings-dialog {
+    width: min(500px, calc(100vw - 30px));
+    max-height: 85vh;
+    padding: 26px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 14px;
+    background: #fff;
+    color: #1c2941;
+    overflow-y: auto;
+}
+
+dialog.settings-dialog[open] {
+    position: fixed !important;
+    inset: 0 !important;
+    margin: auto !important;
+    transform: none !important;
+}
+
+.settings-dialog::backdrop {
+    background: rgba(11, 23, 58, 0.65);
+}
+
+.settings-dialog-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 23px;
+}
+
+.settings-dialog-header h3 {
+    margin: 0;
+    font-size: 19px;
+}
+
+.settings-dialog-header button {
+    background: transparent;
+    border: none;
+    color: #778699;
+    font-size: 27px;
+    cursor: pointer;
+}
+
+#settings-password-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 650px) {
+    .settings-card {
+        padding: 18px;
+    }
+
+    .settings-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .settings-tabs {
+        gap: 0;
+    }
+
+    .settings-tab {
+        padding: 12px 14px;
+        font-size: 12px;
+    }
+
+    .settings-security-row {
+        flex-wrap: wrap;
+    }
+
+    .settings-security-row button {
+        width: 100%;
+    }
+
+    .settings-form-actions button {
+        flex: 1;
+    }
+}

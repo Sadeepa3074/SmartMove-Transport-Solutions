@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SmartMove | Admin Dashboard</title>
+<link href="admin.css" rel="stylesheet"/>
+<link rel="stylesheet" href="trips.css"/>
+<link rel="stylesheet" href="bookings.css">
+<link rel="stylesheet" href="payments.css">
+<link rel="stylesheet" href="maintenance.css">
+<link rel="stylesheet" href="feedback.css">
+<link rel="stylesheet" href="settings.css">
+<link rel="stylesheet" href="reports.css">
+<link rel="stylesheet" href="content.css">
+</head>
+<body>
+<div class="admin-layout">
+<!-- LEFT SIDEBAR -->
+<aside class="sidebar">
+<div class="logo">
+<span class="logo-icon">▲</span>
+<h2>Smart<span>Move</span></h2>
+</div>
+<nav class="sidebar-nav">
+<button class="nav-item active" data-page="dashboard">Dashboard</button>
+<button class="nav-item" data-page="vehicles">Vehicles</button>
+<button class="nav-item" data-page="drivers">Drivers</button>
+<button class="nav-item" data-page="routes">Routes</button>
+<button class="nav-item" data-page="trips">Trips</button>
+<button class="nav-item" data-page="passengers">Passengers</button><button class="nav-item" data-page="bookings">Bookings</button>
+<button class="nav-item" data-page="payments">Payments &amp; Finance</button>
+<button class="nav-item" data-page="maintenance">Maintenance</button>
+<button class="nav-item" data-page="feedback">Feedback</button>
+<button class="nav-item" data-page="reports">Reports</button>
+<button class="nav-item" data-page="content">MongoDB Content</button>
+<button class="nav-item" data-page="settings">Settings</button>
+</nav>
+</aside>
+
+<!-- MAIN AREA -->
+<div class="main-area">
+<header class="topbar">
+<h1 id="page-title">Dashboard Overview</h1>
+<div class="topbar-right">
+<input aria-label="Search system" id="system-search" placeholder="Search system..." type="search"/>
+<button class="secondary-btn admin-logout" id="admin-logout" type="button">Log Out</button><div class="admin-profile">
+<div class="profile-avatar">AD</div>
+<div>
+<strong>Administrator</strong>
+<small>Fleet Administrator</small>
+</div>
+</div>
+</div>
+</header>
+
+<main class="content">
+
+<!-- DASHBOARD PAGE -->
+<section class="page-section" id="dashboard-page">
+<div class="welcome-banner">
+<div>
+<h2>Welcome Back, Admin!</h2>
+<p id="welcome-date">Welcome to your SmartMove dashboard.</p>
+</div>
+<span class="on-time-badge" id="on-time-rate">-- On-Time</span>
+</div>
+<div class="stats-grid">
+<div class="stat-card"><span class="stat-icon">🚌</span><div><p>Total Vehicles</p><h2 id="total-vehicles">--</h2></div></div>
+<div class="stat-card"><span class="stat-icon">🛣️</span><div><p>Active / Scheduled Trips</p><h2 id="active-trips">--</h2></div></div>
+<div class="stat-card"><span class="stat-icon">🎫</span><div><p>Today's Bookings</p><h2 id="today-bookings">--</h2></div></div>
+<div class="stat-card"><span class="stat-icon">💳</span><div><p>Revenue Today</p><h2 id="today-revenue">--</h2></div></div>
+</div>
+<div class="dashboard-panels">
+<section class="panel"><h3>Recent Bookings</h3><div class="table-wrapper"><table><thead><tr><th>Booking</th><th>Passenger</th><th>Route</th><th>Seats</th><th>Total</th><th>Status</th></tr></thead><tbody id="recent-bookings-body"><tr><td colspan="6" class="empty-message">Loading bookings...</td></tr></tbody></table></div></section>
+<section class="panel"><h3>Upcoming Trips</h3><div id="upcoming-trips-list"><p class="empty-message">Loading trips...</p></div></section>
+</div>
+</section>
+
+<!-- VEHICLES PAGE -->
+<section class="page-section" hidden id="vehicles-page">
+<div class="vehicle-page-header"><div><h2>Vehicle Management</h2><p>Manage fleet vehicles.</p></div><button class="primary-btn" id="add-vehicle-btn">+ Add Vehicle</button></div>
+<div class="vehicle-toolbar"><input id="vehicle-search" placeholder="Search registration..." type="search"/></div>
+<section class="panel vehicle-panel"><div class="vehicle-grid" id="vehicle-grid"></div></section>
+<dialog class="vehicle-dialog" id="vehicle-dialog">
+<form id="vehicle-form">
+<div class="form-header"><h3>Add New Vehicle</h3><button id="close-vehicle-dialog" type="button">×</button></div>
+<label>Registration Number *</label><input id="vehicle-registration" required placeholder="WP NB-1234"/>
+<label>Make *</label><input id="vehicle-make" required placeholder="Ashok Leyland"/>
+<label>Model *</label><input id="vehicle-model" required placeholder="Viking"/>
+<label>Manufacturing Year *</label><input id="vehicle-year" type="number" required min="1950" max="2030" value="2023"/>
+<label>Vehicle Type *</label><select id="vehicle-type"><option>Bus</option><option>Van</option><option>Other</option></select>
+<label>Seat Capacity *</label><input id="vehicle-capacity" type="number" required min="1" max="100" value="40"/>
+<label>Fuel Type *</label><select id="vehicle-fuel"><option>Diesel</option><option>Petrol</option><option>Electric</option></select>
+<label>Status *</label><select id="vehicle-status"><option>Active</option><option>Idle</option><option>Maintenance</option></select>
+<br/><button class="primary-btn" type="submit">Save Vehicle</button>
+</form>
+</dialog>
+</section>
+
+<!-- DRIVERS PAGE -->
+<section class="page-section" hidden id="drivers-page">
+<div class="vehicle-page-header"><div><h2>Driver Management</h2><p>Manage driver profiles.</p></div><button class="primary-btn" id="add-driver-btn">+ Add Driver</button></div>
+<div class="vehicle-toolbar"><input id="driver-search" placeholder="Search driver..." type="search"/><select id="driver-status-filter"><option value="all">All statuses</option><option>Active</option><option>Inactive</option></select></div>
+<section class="panel"><div class="table-wrapper"><table class="driver-table"><thead><tr><th>Driver</th><th>License</th><th>Phone</th><th>Expiry</th><th>Employment</th><th>Status</th><th>Actions</th></tr></thead><tbody id="drivers-table-body"><tr><td colspan="7" class="empty-message">Loading...</td></tr></tbody></table></div></section>
+<dialog class="vehicle-dialog" id="driver-dialog"><form id="driver-form"><div class="form-header"><h3>Add Driver</h3><button id="close-driver-dialog" type="button">×</button></div>
+<label>First Name *</label><input id="driver-first-name" required/>
+<label>Last Name *</label><input id="driver-last-name" required/>
+<label>Email *</label><input id="driver-email" type="email" required/>
+<label>Phone *</label><input id="driver-phone" required/>
+<label>License Number *</label><input id="driver-license" required/>
+<label>License Expiry *</label><input id="driver-expiry" type="date" required/>
+<label>Employment Status</label><select id="driver-employment"><option>Active</option><option>Inactive</option><option>On Leave</option></select>
+<br/><button class="primary-btn" type="submit">Save Driver</button></form></dialog>
+</section>
+
+<!-- ROUTES PAGE -->
+<section class="page-section" hidden id="routes-page">
+<div class="vehicle-page-header"><div><h2>Route Management</h2><p>Manage routes.</p></div><button class="primary-btn" id="add-route-btn">+ Add Route</button></div>
+<div class="vehicle-toolbar"><input id="route-search" placeholder="Search route..." type="search"/><select id="route-status-filter"><option value="all">All statuses</option><option value="Active">Active</option><option value="Inactive">Inactive</option></select></div>
+<section class="panel"><div class="table-wrapper"><table class="route-table"><thead><tr><th>Route ID</th><th>Name</th><th>Start</th><th>Destination</th><th>Distance</th><th>Duration</th><th>Fare</th><th>Status</th><th>Actions</th></tr></thead><tbody id="routes-table-body"><tr><td colspan="9" class="empty-message">Loading routes...</td></tr></tbody></table></div></section>
+<dialog class="vehicle-dialog" id="route-dialog"><form id="route-form"><div class="form-header"><h3>Add Route</h3><button id="close-route-dialog" type="button">×</button></div>
+<label>Route ID *</label><input id="route-code" required/>
+<label>Route Name *</label><input id="route-name" required/>
+<label>Start Loc *</label><input id="route-origin" required/>
+<label>End Loc *</label><input id="route-destination" required/>
+<label>Distance *</label><input id="route-distance" type="number" required/>
+<label>Duration *</label><input id="route-duration" type="text" maxlength="30" placeholder="e.g. 3 hours 30 minutes" required/>
+<label>Fare *</label><input id="route-fare" type="number" min="0" step="0.01" required/>
+<label>Status</label><select id="route-status"><option value="Active">Active</option><option value="Inactive">Inactive</option></select>
+<br/><button class="primary-btn" type="submit">Save Route</button></form></dialog>
+</section>
+
+<!-- TRIPS PAGE -->
+<section class="page-section" hidden id="trips-page">
+<div class="vehicle-page-header"><div><h2>Trip Management</h2><p>Schedule trips.</p></div><button id="add-trip-btn" class="primary-btn">+ Schedule Trip</button></div>
+<div class="vehicle-toolbar"><input id="trip-search" placeholder="Search trip..." type="search"/><select id="trip-status-filter"><option value="all">All statuses</option><option>Scheduled</option><option>Active</option><option>Completed</option><option>Cancelled</option></select></div>
+<section class="panel"><div class="table-wrapper"><table class="trip-table"><thead><tr><th>Trip ID</th><th>Route</th><th>Vehicle</th><th>Departure</th><th>Arrival</th><th>Seats</th><th>Status</th><th>Actions</th></tr></thead><tbody id="trips-table-body"><tr><td colspan="8" class="empty-message">Loading trips...</td></tr></tbody></table></div></section>
+<dialog class="vehicle-dialog" id="trip-dialog"><form id="trip-form"><div class="form-header"><h3>Schedule Trip</h3><button id="close-trip-dialog" type="button">×</button></div>
+<label>Trip ID *</label><input id="trip-code" required/>
+<label>Route ID *<select id="trip-route" required><option value="">Loading routes...</option></select></label>
+<label>Vehicle ID *<select id="trip-vehicle" required><option value="">Loading vehicles...</option></select></label>
+<label>Driver<select id="trip-driver"><option value="">No driver assigned</option></select></label>
+<label>Departure *</label><input id="trip-departure" type="datetime-local" required/>
+<label>Arrival *</label><input id="trip-expected-arrival" type="datetime-local" required/>
+<label>Status</label><select id="trip-status"><option>Scheduled</option><option>Active</option><option>Completed</option><option>Cancelled</option></select>
+<br/><button class="primary-btn" type="submit">Save Trip</button></form></dialog>
+</section>
+
+<!-- PASSENGER MANAGEMENT PAGE -->
+<section id="passengers-page" class="page-section" hidden>
+<div class="vehicle-page-header"><div><h2>Passenger Management</h2><p>Register, search, update and deactivate passengers stored in Oracle.</p></div><button class="primary-btn" id="passenger-add-btn">+ Add Passenger</button></div>
+<div class="vehicle-toolbar"><input id="passenger-search" placeholder="Search passenger, email or phone..." type="search"/></div>
+<section class="panel"><div class="table-wrapper"><table><thead><tr><th>Passenger No</th><th>Name</th><th>Email</th><th>Phone</th><th>Type/Status</th><th>Registration</th><th>Actions</th></tr></thead><tbody id="passenger-table-body"><tr><td colspan="7" class="empty-message">Loading passengers...</td></tr></tbody></table></div></section>
+<dialog class="vehicle-dialog" id="passenger-dialog"><form id="passenger-form"><div class="form-header"><h3>Add Passenger</h3><button id="passenger-dialog-close" type="button">×</button></div><label>Passenger Number *<input id="passenger-no" required></label><label>First Name *<input id="passenger-first-name" required></label><label>Last Name *<input id="passenger-last-name" required></label><label>Email *<input id="passenger-email" type="email" required></label><label>Phone<input id="passenger-phone"></label><label>Address<input id="passenger-address"></label><label>Passenger Type<select id="passenger-type"><option>daily commuter</option><option>corporate</option><option>special travel</option></select></label><label>Status<select id="passenger-status"><option>ACTIVE</option><option>INACTIVE</option></select></label><button class="primary-btn" type="submit">Save Passenger</button></form></dialog>
+</section>
+
+<!-- BOOKINGS PAGE -->
+<section id="bookings-page" class="page-section" hidden>
+<div class="vehicle-page-header"><div><h2>Booking Management</h2><p>View, verify, confirm and cancel reservations.</p></div></div>
+<div class="vehicle-toolbar"><input id="booking-search" placeholder="Search booking, passenger or trip..." type="search"/><select id="booking-status-filter"><option value="all">All statuses</option><option>CONFIRMED</option><option>PENDING</option><option>CANCELLED</option></select></div>
+<section class="panel"><div class="table-wrapper"><table class="bookings-table"><thead><tr><th>Booking ID</th><th>Passenger</th><th>Trip</th><th>Date</th><th>Seats</th><th>Amount</th><th>Payment</th><th>Status</th><th>Actions</th></tr></thead><tbody id="bookings-table-body"><tr><td colspan="9" class="empty-message">Loading bookings...</td></tr></tbody></table></div></section>
+<dialog class="vehicle-dialog" id="booking-details-dialog"><div class="form-header"><h3>Booking Details</h3><button id="close-booking-details" type="button">×</button></div><div id="booking-details-info"></div><button class="primary-btn" id="booking-details-done" type="button">Done</button></dialog>
+</section>
+
+<!-- PAYMENTS & FINANCE PAGE -->
+<section id="payments-page" class="page-section" hidden>
+<div class="finance-header"><div><h2>Payments & Finance</h2><p>Monitor transactions and revenue.</p></div></div>
+<div class="stats-grid">
+<div class="stat-card"><div><p>Total Collected</p><h2 id="finance-collected">Rs. 0.00</h2></div></div>
+</div>
+<section class="panel">
+<div class="panel-heading"><h3>Transactions</h3><span id="finance-results">0 transaction(s)</span></div>
+<div class="table-wrapper">
+<table class="finance-table">
+<thead><tr><th>Payment ID</th><th>Booking ID</th><th>Passenger</th><th>Amount</th><th>Method</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
+<tbody id="finance-table-body"><tr><td colspan="8" class="empty-message">Loading payments from Oracle...</td></tr></tbody>
+</table>
+</div>
+</section>
+</section>
+
+<!-- MAINTENANCE PAGE -->
+<section id="maintenance-page" class="page-section" hidden>
+<div class="maintenance-header"><div><h2>Maintenance Management</h2><p>Track vehicle servicing.</p></div><button class="primary-btn" id="maintenance-add-btn">+ Add Maintenance</button></div>
+<section class="panel">
+<div class="table-wrapper">
+<table class="maintenance-table">
+<thead><tr><th>ID</th><th>Vehicle ID</th><th>Type</th><th>Cost</th><th>Due Date</th><th>Status</th><th>Actions</th></tr></thead>
+<tbody id="maintenance-table-body"><tr><td colspan="7" class="empty-message">Loading maintenance records...</td></tr></tbody>
+</table>
+</div>
+</section>
+<dialog class="vehicle-dialog" id="maintenance-form-dialog"><form id="maintenance-form"><div class="form-header"><h3>Add Maintenance</h3><button id="maintenance-form-close" type="button">×</button></div>
+<label>Vehicle ID *<select id="maintenance-vehicle" required><option value="">Loading vehicles...</option></select></label>
+<label>Type *</label><input id="maintenance-type" required placeholder="Regular Service"/>
+<label>Description *</label><input id="maintenance-description" required/>
+<label>Cost *</label><input id="maintenance-cost" type="number" required/>
+<label>Next Due Date *</label><input id="maintenance-due" type="date" required/>
+<label>Status</label><select id="maintenance-status"><option>PENDING</option><option>COMPLETED</option></select>
+<br/><button class="primary-btn" type="submit">Save Maintenance</button></form></dialog>
+</section>
+
+<!-- FEEDBACK PAGE -->
+<section id="feedback-page" class="page-section" hidden>
+<div class="feedback-header"><div><h2>Feedback Management</h2><p>Review, verify and publish passenger feedback stored in Oracle.</p></div></div>
+<div class="feedback-stats"><div class="feedback-stat-card"><p>Total Feedback</p><h2 id="feedback-total">—</h2></div><div class="feedback-stat-card"><p>Average Rating</p><h2 id="feedback-average">—</h2></div><div class="feedback-stat-card"><p>New</p><h2 id="feedback-new">—</h2></div><div class="feedback-stat-card"><p>Published</p><h2 id="feedback-published">—</h2></div></div>
+<section class="feedback-panel"><div class="feedback-panel-header"><div><h3>Passenger Reviews</h3><p>Customer comments, ratings and trip context.</p></div><span id="feedback-result-count">Loading…</span></div><div class="feedback-toolbar"><input id="feedback-search" type="search" placeholder="Search passenger, route or comment…"><select id="feedback-status-filter"><option value="all">All statuses</option><option>NEW</option><option>VERIFIED</option><option>PUBLISHED</option><option>REJECTED</option></select></div><div id="feedback-list"><p class="feedback-empty">Loading feedback records...</p></div></section>
+</section>
+
+<!-- REPORTS PAGE -->
+<section id="reports-page" class="page-section" hidden>
+<div class="reports-header"><div><h2>Executive Reports</h2><p>Five useful business reports calculated from live Oracle data through the SmartMove PL/SQL reporting package.</p></div></div>
+<div class="report-grid">
+<article class="report-card"><h3>1. Payment & Revenue Summary</h3><p>Required coursework report: paid amount, payment count, refunds, net revenue and payment-method totals.</p><div class="report-inline"><label>Start date<input id="report-start" type="date"></label><label>End date<input id="report-end" type="date"></label></div><button class="primary-btn report-run" data-report="revenue">Run Report</button><div class="report-output" id="report-revenue"><p class="empty-message">Choose dates and run the report.</p></div></article>
+<article class="report-card"><h3>2. Driver Assignment & Schedule</h3><p>Required coursework report: driver, trip, route, vehicle, departure, arrival, status and trip hours.</p><div class="report-inline report-inline-3"><label>Driver<select id="report-driver"><option value="">All drivers</option></select></label><label>Start date<input id="driver-start" type="date"></label><label>End date<input id="driver-end" type="date"></label></div><button class="primary-btn report-run" data-report="driver">Run Report</button><div class="report-output" id="report-driver-output"><p class="empty-message">Run the report to load assignments.</p></div></article>
+<article class="report-card"><h3>3. Monthly Operations Summary</h3><p>Required coursework report: bookings, tickets, passengers, trips run/cancelled, revenue and new passengers.</p><div class="report-inline"><label>Month<input id="report-month" type="number" min="1" max="12"></label><label>Year<input id="report-year" type="number" min="2000"></label></div><button class="primary-btn report-run" data-report="monthly">Run Report</button><div class="report-output" id="report-monthly"><p class="empty-message">Choose month/year and run the report.</p></div></article>
+<article class="report-card"><h3>4. Most Frequently Used Routes</h3><p>Required coursework report: routes ranked by bookings, tickets sold and revenue for a selected date range.</p><div class="report-inline report-inline-3"><label>Start date<input id="route-start" type="date"></label><label>End date<input id="route-end" type="date"></label><label>Top routes<input id="route-top" type="number" min="1" max="50" value="10"></label></div><button class="primary-btn report-run" data-report="routes">Run Report</button><div class="report-output" id="report-routes"><p class="empty-message">Choose dates and run the report.</p></div></article>
+<article class="report-card"><h3>5. Vehicles Due for Maintenance</h3><p>Required coursework report: registration, type/model, last service, next due date, days remaining and current status.</p><label>Days ahead<input id="maintenance-days" type="number" min="0" max="3650" value="30"></label><button class="primary-btn report-run" data-report="maintenance">Run Report</button><div class="report-output" id="report-maintenance"><p class="empty-message">Run the report to load maintenance due data.</p></div></article>
+<article class="report-card"><h3>Extra: Passenger Travel History</h3><p>Optional coursework report. Select a real passenger instead of typing the passenger number.</p><select id="report-passenger"><option value="">Loading passengers...</option></select><button class="primary-btn report-run" data-report="history">Run Report</button><div class="report-output" id="report-history"><p class="empty-message">Select a passenger and run the report.</p></div></article>
+</div>
+</section>
+
+<!-- MONGODB CONTENT PAGE -->
+<section id="content-page" class="page-section" hidden>
+<div class="reports-header"><div><h2>MongoDB Content</h2><p>Manage and inspect the flexible content used by SmartMove.</p></div></div>
+<div class="content-grid">
+<section class="content-card"><h3>Travel Announcements</h3><form id="announcement-form"><input id="announcement-title" required placeholder="Announcement title"><textarea id="announcement-text" required placeholder="Announcement content"></textarea><button class="primary-btn" type="submit">Publish Announcement</button><p id="announcement-message" class="content-message"></p></form><div id="announcement-list" class="content-list"><p class="empty-message">Loading…</p></div></section>
+<section class="content-card"><h3>Passenger Reviews (MongoDB)</h3><p class="content-help">Choose a passenger from Oracle, then inspect that passenger's MongoDB review records.</p><div class="content-inline"><select id="mongo-review-passenger"><option value="">Loading passengers...</option></select><button class="secondary-btn" id="mongo-review-search" type="button">Search</button></div><div id="mongo-review-list" class="content-list"><p class="empty-message">Select a passenger to load reviews.</p></div></section>
+<section class="content-card"><h3>Vehicle Documents / Multimedia</h3><p class="content-help">Choose a vehicle from Oracle to inspect its flexible MongoDB documents, images or other media.</p><div class="content-inline"><select id="mongo-vehicle-id"><option value="">Loading vehicles...</option></select><button class="secondary-btn" id="mongo-vehicle-load" type="button">Load</button></div><div class="content-inline"><input id="mongo-vehicle-type" placeholder="Document type e.g. Insurance"><input id="mongo-vehicle-url" placeholder="File path/URL e.g. /uploads/docs/V001.pdf"><button class="secondary-btn" id="mongo-vehicle-save" type="button">Save Document</button></div><div id="mongo-vehicle-output" class="content-list"><p class="empty-message">Select a vehicle to load content.</p></div></section>
+<section class="content-card"><h3>Trip Multimedia</h3><p class="content-help">Choose a real trip from Oracle to inspect photos, documents or other media stored in MongoDB.</p><div class="content-inline"><select id="mongo-trip-id"><option value="">Loading trips...</option></select><button class="secondary-btn" id="mongo-trip-load" type="button">Load</button></div><div class="content-inline"><select id="mongo-trip-type"><option>image</option><option>video</option><option>document</option></select><input id="mongo-trip-url" placeholder="Media path/URL"><input id="mongo-trip-caption" placeholder="Caption"><button class="secondary-btn" id="mongo-trip-save" type="button">Save Media</button></div><div id="mongo-trip-output" class="content-list"><p class="empty-message">Select a trip to load media.</p></div></section>
+</div>
+</section>
+
+<!-- SETTINGS PAGE -->
+<section id="settings-page" class="page-section" hidden>
+<div class="settings-header"><h2>Settings</h2><p>Manage your account profile.</p></div>
+<section class="settings-card"><div class="settings-card-heading"><h3>Administrator Profile</h3><p>Update the administrator information stored in Oracle.</p></div><div class="settings-profile-banner"><div class="settings-avatar">SM</div><div><h3 id="settings-display-name">Loading...</h3><p id="settings-security-role">Administrator</p></div></div><form id="settings-profile-form"><div class="settings-form-grid"><label>First Name<input id="settings-first-name" required/></label><label>Last Name<input id="settings-last-name" required/></label><label>Email<input id="settings-email" type="email" required/></label><label>Phone<input id="settings-phone"/></label></div><p id="settings-message" class="settings-message" role="status"></p><div class="settings-form-actions"><button class="primary-btn" type="submit">Save Profile</button></div></form></section>
+</section>
+
+</main>
+</div>
+</div>
+
+<script src="admin.js"></script>
+<script src="vehicles.js"></script>
+<script src="drivers.js"></script>
+<script src="passengers.js"></script>
+<script src="routes.js"></script>
+<script src="trips.js"></script>
+<script src="bookings.js"></script>
+<script src="payments.js"></script>
+<script src="maintenance.js"></script>
+<script src="feedback.js"></script>
+<script src="reports.js"></script>
+<script src="content.js"></script>
+<script src="settings.js"></script>
+</body>
+</html>
