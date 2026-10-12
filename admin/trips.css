@@ -1,0 +1,15 @@
+/* Trip Management — uses the existing SmartMove design tokens and dialogs */
+.trip-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:22px}
+.trip-stat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:19px}
+.trip-stat-card p{font-size:12px;color:var(--muted);margin-bottom:7px}.trip-stat-card h2{font-size:25px}
+.trip-table{min-width:1120px}.trip-table td{font-size:11px;vertical-align:middle}.trip-actions{display:flex;gap:6px;flex-wrap:wrap}
+.trip-actions .secondary-btn{padding:7px 9px;font-size:10px}.trip-status-text{font-weight:600;color:var(--teal)}
+#trip-dialog,#trip-details-dialog{width:min(540px,calc(100% - 30px))}
+#trip-dialog .primary-btn,#trip-details-done{width:100%}
+#trip-driver-assignments{display:flex;flex-direction:column;gap:10px;margin-bottom:10px}
+.trip-assignment-row{display:grid;grid-template-columns:1.5fr 1fr auto;gap:7px;align-items:center}
+.trip-assignment-row select{min-width:0}.trip-assignment-row button{font-size:11px}
+#trip-form-message{color:#bb3333;font-size:12px;min-height:16px}
+.trip-hint{font-size:11px;color:var(--muted);line-height:1.6;margin:7px 0}
+@media(max-width:850px){.trip-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.trip-stats{grid-template-columns:1fr}.trip-assignment-row{grid-template-columns:1fr}}
