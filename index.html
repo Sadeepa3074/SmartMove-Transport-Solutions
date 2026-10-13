@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SmartMove Transport Solutions — a smarter way to navigate your city." />
+  <title>SmartMove | The Smart Way to Navigate Your City</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+  <script src="customer/customer-session.js" defer></script>
+  <link rel="stylesheet" href="customer/customer-session.css" />
+  <link rel="stylesheet" href="updates.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="SmartMove home"><span class="brand-mark">S</span><span>Smart<span class="brand-green">Move</span></span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav class="main-nav" id="mainNav">
+      <a class="active" href="#home">Home</a><a href="#routes">Routes</a><a href="customer/index.html">Book a Trip</a><a href="#tracking">Track Trip</a><a href="#fleet">Fleet</a><a href="#about">About</a>
+    </nav>
+    <div class="header-actions" data-login-href="login.html?next=index.html" data-signup-href="customer/signup.html?next=index.html"><a class="btn btn-outline btn-small" href="login.html?next=index.html">Login</a><a class="btn btn-green btn-small" href="customer/signup.html?next=index.html">Sign Up</a></div>
+  </header>
+
+  <main>
+    <section class="hero section-wrap" id="home">
+      <div class="hero-copy"><span class="eyebrow">SMART URBAN TRANSIT</span><h1>The Smart Way to<br class="desktop-break" /> Navigate Your City</h1><p>SmartMove connects passengers with live routes, scheduled trips, digital bookings, and database-backed travel services.</p><div class="hero-actions"><a class="btn btn-green" href="customer/index.html">Book Your Ride</a><a class="btn btn-outline" href="#routes">View Routes</a></div></div>
+      <div class="hero-visual image-placeholder hero-image" role="img" aria-label="SmartMove hero image"><img src="assets/images/hero.png" alt="SmartMove transport hero" onerror="this.hidden=true;this.parentElement.classList.add('image-missing')"><span class="placeholder-label">Put your hero image at assets/images/hero.png</span></div>
+    </section>
+
+    <section class="stats-band" aria-label="Live SmartMove statistics"><div class="stats-grid section-wrap"><div><strong id="home-stat-vehicles">—</strong><span>VEHICLES MANAGED</span></div><div><strong id="home-stat-routes">—</strong><span>ACTIVE ROUTES</span></div><div><strong id="home-stat-trips">—</strong><span>TRIPS TODAY</span></div><div><strong id="home-stat-feedback">—</strong><span>PASSENGER FEEDBACK</span></div></div></section>
+
+    <section class="section section-muted" id="services"><div class="section-wrap"><div class="section-heading"><h2>Our Premium Transportation Services</h2><p>Connecting people and destinations with a wide, eco-friendly fleet</p></div><div class="services-grid">
+      <article class="service-card"><span class="icon-chip">♧</span><h3>Bus Services</h3><p>Eco-friendly, high-capacity city routes running continuously for thousands of commuters.</p></article>
+      <article class="service-card"><span class="icon-chip">◎</span><h3>Van Services</h3><p>Comfortable passenger vans specialized for neighborhood routes and private group travel.</p></article>
+      <article class="service-card"><span class="icon-chip">▣</span><h3>Corporate Shuttle</h3><p>Reliable commuter solutions for companies, keeping business teams aligned and on-time.</p></article>
+      <article class="service-card"><span class="icon-chip">⌖</span><h3>Route Planning</h3><p>Systematically optimized routes designed with modern traffic insights to cut commute durations.</p></article>
+      <article class="service-card"><span class="icon-chip">▤</span><h3>Digital Ticketing</h3><p>Effortless mobile ticket checking with instant QR passes. Zero paperwork required.</p></article>
+      <article class="service-card"><span class="icon-chip">⌁</span><h3>Real-Time Tracking</h3><p>Track transit status, vehicle proximity, and exact ETA through our custom passenger app.</p></article>
+    </div></div></section>
+
+    <section class="section" id="booking"><div class="section-wrap"><div class="section-heading"><h2>Getting Started Is Simple</h2><p>Navigate your booking in just a few frictionless steps</p></div><div class="steps-grid">
+      <article class="step"><span class="step-number">01</span><h3>Register &amp; Login</h3><p>Create an account on web or app. Verify commuter status.</p></article><article class="step"><span class="step-number">02</span><h3>Choose Your Route</h3><p>Search routes by terminal or drop-off location.</p></article><article class="step"><span class="step-number">03</span><h3>Book Your Seat</h3><p>Secure your seat easily using digital wallets or cards.</p></article><article class="step"><span class="step-number">04</span><h3>Travel &amp; Rate</h3><p>Hop aboard, scan code, ride comfortably, and rate us.</p></article>
+    </div></div></section>
+
+    <section class="section section-muted" id="routes"><div class="section-wrap"><div class="section-heading"><h2>Highly Requested Routes Today</h2><p>Live route demand and fares from the Oracle database</p></div><div class="routes-grid" id="routeCards"><p class="integration-note">Loading live route data from Oracle...</p></div></div></section>
+
+    <section class="section" id="fleet"><div class="section-wrap"><div class="section-heading"><h2>Meet Our Advanced Fleet</h2><p>Eco-friendly, certified, clean transit categories</p></div><div class="fleet-grid" id="fleetCards">
+      <article class="fleet-card"><div class="fleet-photo image-placeholder bus-photo"><img src="assets/images/bus.png" alt="SmartMove bus" onerror="this.hidden=true"><span class="placeholder-label">Put bus.png in assets/images</span></div><div class="fleet-info"><h3>Transit Buses</h3><p>Spacious layout, air conditioned with passenger comfort focus.</p><div class="fleet-meta"><span>Capacity: 40–60 Seats</span><span>Fuel: Electric / Hybrid</span></div></div></article>
+      <article class="fleet-card"><div class="fleet-photo image-placeholder van-photo"><img src="assets/images/van.png" alt="SmartMove van" onerror="this.hidden=true"><span class="placeholder-label">Put van.png in assets/images</span></div><div class="fleet-info"><h3>Executive Vans</h3><p>Leather seating, high speed Wi-Fi, perfect for business commuters.</p><div class="fleet-meta"><span>Capacity: 8–15 Seats</span><span>Fuel: Bio-Diesel / Electric</span></div></div></article>
+      <article class="fleet-card"><div class="fleet-photo image-placeholder special-photo"><img src="assets/images/special.png" alt="SmartMove special vehicle" onerror="this.hidden=true"><span class="placeholder-label">Put special.png in assets/images</span></div><div class="fleet-info"><h3>Special Vehicles</h3><p>Specially designed and fully equipped for mobility challenged riders.</p><div class="fleet-meta"><span>Capacity: Accessible Lift Equipped</span><span>Fuel: Hybrid</span></div></div></article>
+    </div><p class="integration-note">Fleet records are maintained in Oracle; multimedia records are maintained in MongoDB.</p></div></section>
+
+    <section class="section" id="updates"><div class="section-wrap"><div class="section-heading"><h2>Latest Travel Updates</h2><p>Live announcements delivered from MongoDB</p></div><div class="updates-grid" id="homepageAnnouncements"><p class="integration-note">Loading live travel updates from MongoDB...</p></div></div></section>
+
+    <section class="section section-muted" id="reviews"><div class="section-wrap"><div class="section-heading"><h2>What Our Passengers Say</h2><p>Recent passenger feedback stored in Oracle</p></div><div class="reviews-grid" id="homepageReviews"><p class="integration-note">Loading passenger feedback from Oracle...</p></div></div></section>
+
+    <section class="app-promo" id="tracking"><div class="section-wrap app-promo-inner"><div><h2>SmartMove in Your Pocket</h2><p>Manage your travel logs, track your commuter routes in real-time, purchase boarding tickets instantly, and secure your commutes in a simple tap.</p><div class="store-buttons"><a href="#app" class="store-button"><span>▣</span><span><small>Download on the</small><strong>App Store</strong></span></a><a href="#app" class="store-button"><span>▶</span><span><small>GET IT ON</small><strong>Google Play</strong></span></a></div></div><div class="phone-image image-placeholder"><img src="assets/images/phone.png" alt="SmartMove mobile app" onerror="this.hidden=true"><span class="placeholder-label">Put phone.png in assets/images</span></div></div></section>
+  </main>
+
+  <footer class="site-footer" id="about"><div class="section-wrap"><div class="footer-grid"><div class="footer-about"><a class="brand brand-light" href="#home"><span class="brand-mark">S</span><span>Smart<span class="brand-green">Move</span></span></a><p>SmartMove is a modern urban transportation provider designed to connect daily commuters, teams, and travelers safely and on-time.</p><div class="social-links"><a href="#social" aria-label="Facebook">f</a><a href="#social" aria-label="Twitter">𝕏</a><a href="#social" aria-label="Instagram">◎</a><a href="#social" aria-label="LinkedIn">in</a></div></div><div><h3>Quick Links</h3><a href="#home">Home</a><a href="#routes">Routes</a><a href="#booking">Book a Trip</a><a href="#tracking">Track Trip</a><a href="#fleet">About Us</a><a href="login.html">Sign In</a></div><div><h3>Services</h3><a href="#services">Bus Services</a><a href="#services">Van Services</a><a href="#services">Corporate Shuttle</a><a href="#services">Digital Ticketing</a><a href="#tracking">Real-Time Tracking</a></div><div><h3>Contact Info</h3><p>◎ 100 Transit Boulevard, Smart City</p><p>☎ +1 (800) 555-MOVE</p><p>✉ support@smartmove.com</p></div></div><div class="footer-bottom"><span>© 2026 SmartMove Transport Solutions. All rights reserved.</span><span><a href="#privacy">Privacy Policy</a> · <a href="#terms">Terms &amp; Conditions</a></span></div></div></footer>
+</body>
+</html>
